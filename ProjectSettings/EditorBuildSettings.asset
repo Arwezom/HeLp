@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/StartScreen.unity
     guid: b753e6a609533ba4693b58289e90e7d9
+  - enabled: 1
+    path: Assets/Scenes/WorldSelect.unity
+    guid: c47cb35bd4f239d46a5331a0eb5271ba
   m_configObjects: {}
