@@ -48,7 +48,7 @@ public class PlanetSelect : MonoBehaviour
         PlayerPrefs.SetInt("selectedWorld", selectedWorld);
         Save();
     }
-    public void ChangeScene(int sceneID)
+    public void SceneSwap(int sceneID)
     {
         SceneManager.LoadScene(sceneID);
     }

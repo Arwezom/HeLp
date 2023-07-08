@@ -15,7 +15,7 @@ public class CharSelect : MonoBehaviour
         Load();
         selectedCharacter = PlayerPrefs.GetInt("SelectedCharacter", 0);
         foreach (GameObject player in skins)
-            player.SetActive(false);
+        player.SetActive(false);
 
         skins[selectedCharacter].SetActive(true);
     }
