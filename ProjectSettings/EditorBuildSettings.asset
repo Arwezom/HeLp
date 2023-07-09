@@ -6,8 +6,11 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 0
-    path: Assets/Scenes/SampleScene.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 1
+    path: Assets/Scenes/StartScreen.unity
+    guid: b753e6a609533ba4693b58289e90e7d9
   - enabled: 1
     path: Assets/Scenes/Chrackter Selection.unity
     guid: ed897222f5653314aa922a88bbe6626d
@@ -15,9 +18,9 @@ EditorBuildSettings:
     path: Assets/Scenes/GameScreen.unity
     guid: 0d0f3e3d779e7d949b34da26d1543375
   - enabled: 1
-    path: Assets/Scenes/StartScreen.unity
-    guid: b753e6a609533ba4693b58289e90e7d9
-  - enabled: 1
     path: Assets/Scenes/WorldSelect.unity
     guid: c47cb35bd4f239d46a5331a0eb5271ba
+  - enabled: 1
+    path: Assets/Scenes/Settings.unity
+    guid: 499d872cc6f30874ebeb8199e418803b
   m_configObjects: {}
