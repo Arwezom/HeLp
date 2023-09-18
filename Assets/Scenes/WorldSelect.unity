@@ -409,7 +409,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &451282349
 RectTransform:
   m_ObjectHideFlags: 0
@@ -482,7 +482,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -2199,7 +2199,7 @@ GameObject:
   - component: {fileID: 1539874400}
   - component: {fileID: 1539874399}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Earth (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2477,7 +2477,8 @@ MonoBehaviour:
   - {fileID: 1309145465}
   - {fileID: 1419997199}
   selectedWorld: 0
-  Name: {fileID: 0}
+  Planet0: {fileID: 1539874399}
+  Planet1: {fileID: 2064105736}
 --- !u!1 &1895385508
 GameObject:
   m_ObjectHideFlags: 0
@@ -2760,7 +2761,7 @@ GameObject:
   - component: {fileID: 2064105737}
   - component: {fileID: 2064105736}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Dessert (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

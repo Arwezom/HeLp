@@ -8,7 +8,8 @@ public class PlanetSelect : MonoBehaviour
 {
     public GameObject[] worlds;
     public int selectedWorld;
-    public TMP_Text Name;
+    public TMP_Text Planet0;
+    public TMP_Text Planet1;
 
     private void Awake()
     {
@@ -59,6 +60,19 @@ public class PlanetSelect : MonoBehaviour
     private void Save()
     {
         PlayerPrefs.SetInt("selectedWorld", selectedWorld);
+    }
+    public void Update()
+    {
+        if(selectedWorld == 1)
+        {
+            Planet1.enabled = true;
+            Planet0.enabled = false;
+        }
+        else
+        {
+            Planet0.enabled = true;
+            Planet1.enabled = false;
+        }
     }
 
 }
