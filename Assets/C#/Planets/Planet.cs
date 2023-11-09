@@ -19,6 +19,7 @@ public class Planet : MonoBehaviour
     private void Load()
     {
         selectedWorld = PlayerPrefs.GetInt("selectedWorld");
+
     }
 
 
