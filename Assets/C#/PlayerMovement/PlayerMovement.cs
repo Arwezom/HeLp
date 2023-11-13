@@ -4,9 +4,9 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     float horizontalInput;
-    float moveSpeed = 10f;
+    float moveSpeed = 15f;
     bool isFacingRight = false;
-    float jumpPower = 10f;
+    float jumpPower = 20f;
     bool isGrounded = false;
 
     Rigidbody2D rb;
