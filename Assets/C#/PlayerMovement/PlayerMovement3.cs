@@ -6,7 +6,6 @@ public class PlayerMovement3 : MonoBehaviour
     float horizontalInput3;
     float moveSpeed3 = 12f;
     bool isFacingRight3 = false;
-    float jumpPower3 = 20f;
     bool isGrounded3;
 
     Rigidbody2D rb3;
