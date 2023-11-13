@@ -4,9 +4,8 @@ using UnityEngine;
 public class PlayerMovement1 : MonoBehaviour
 {
     float horizontalInput1;
-    float moveSpeed1 = 15f;
+    float moveSpeed1 = 12f;
     bool isFacingRight1 = false;
-    bool isGrounded1 = false;
 
     Rigidbody2D rb1;
     Animator animator1;
@@ -23,10 +22,6 @@ public class PlayerMovement1 : MonoBehaviour
     {
         horizontalInput1 = Input.GetAxis("Horizontal");
         FlipSprite();
-        if(isGrounded1 == false)
-        {
-            animator1.SetBool("isJumping", !isGrounded1);
-        }
     }
 
     private void FixedUpdate()
@@ -47,9 +42,21 @@ public class PlayerMovement1 : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    public void OnTriggerEnter2D(Collider2D collision)
     {
-        isGrounded1 = true;
-        animator1.SetBool("isJumping", !isGrounded1);
+       if(collision.gameObject.CompareTag("Ground"))
+        {
+            
+            animator1.SetBool("isJumping", false);
+        } 
     }
+        public void OnTriggerExit2D(Collider2D collision)
+    {
+       if(collision.gameObject.CompareTag("Ground"))
+        {
+            
+            animator1.SetBool("isJumping", true);
+        } 
+    }
+    
 }

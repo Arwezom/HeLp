@@ -4,9 +4,10 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     float horizontalInput;
-    float moveSpeed = 15f;
+    float moveSpeed = 20f;
     bool isFacingRight = false;
     float jumpPower = 20f;
+    int jumpValue = 2;
     bool isGrounded = false;
 
     Rigidbody2D rb;
@@ -28,9 +29,20 @@ public class PlayerMovement : MonoBehaviour
 
         if(Input.GetButtonDown("Jump") && isGrounded)
         {
+            Debug.Log("FirstJump"+jumpValue);
             rb.velocity = new Vector2(rb.velocity.x, jumpPower);
             isGrounded = false;
             animator.SetBool("isJumping", !isGrounded);
+            jumpValue--;
+            return;
+        }
+
+
+        if(Input.GetButtonDown("Jump") && jumpValue >= 1)
+        {
+            Debug.Log("SecondJump"+jumpValue);
+            rb.velocity = new Vector2(rb.velocity.x, jumpPower);
+            jumpValue--;
         }
     }
 
@@ -54,7 +66,17 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        Debug.Log("Landen");
+        jumpValue = 2;
         isGrounded = true;
         animator.SetBool("isJumping", !isGrounded);
+    }
+          public void OnTriggerExit2D(Collider2D collision)
+    {
+        if(collision.gameObject.CompareTag("Ground"))
+        {
+            
+            animator.SetBool("isJumping", true);
+        } 
     }
 }
