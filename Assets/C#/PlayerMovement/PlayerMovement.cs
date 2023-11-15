@@ -8,7 +8,7 @@ public class PlayerMovement : MonoBehaviour
     float moveSpeed = 20f;
     bool isFacingRight = false;
     float jumpPower = 20f;
-    int jumpValue = 2;
+    int jumpValue = 0;
     bool isGrounded = false;
 
     public float dashDistance = 15f;
@@ -25,6 +25,7 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         StartCoroutine(CounterCoroutine());
+        jumpValue=2;
     }
 
     // Update is called once per frame
@@ -45,7 +46,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
 
-        if(Input.GetButtonDown("Jump") && jumpValue >= 1)
+        if(Input.GetButtonDown("Jump") && jumpValue == 1)
         {
             Debug.Log("SecondJump"+jumpValue);
             rb.velocity = new Vector2(rb.velocity.x, jumpPower);
@@ -58,7 +59,7 @@ public class PlayerMovement : MonoBehaviour
         {
             if(doubleTapTime > Time.time && lastKeyCode == KeyCode.A)
             {
-                StartCoroutine(Dash(-5f));
+                StartCoroutine(Dash(-2.5f));
             }
             else
             {
@@ -73,7 +74,7 @@ public class PlayerMovement : MonoBehaviour
         {
             if(doubleTapTime > Time.time && lastKeyCode == KeyCode.D)
             {
-                StartCoroutine(Dash(5f));
+                StartCoroutine(Dash(2.5f));
             }
             else
             {
@@ -128,30 +129,22 @@ public class PlayerMovement : MonoBehaviour
         rb.velocity = new Vector2(rb.velocity.x, 0f);
         rb.AddForce(new Vector2(dashDistance*direction, 0f), ForceMode2D.Impulse);
         float gravity = rb.gravityScale;
-        rb.gravityScale = 0;
         yield return new WaitForSeconds(0.4f);
         isDashing = false;
-        rb.gravityScale = gravity;
 
     }
     IEnumerator CounterCoroutine()
-    {
-        if(jumpValue == 0 && isGrounded)
+    {   
+        if(jumpValue == 1)
         {
+            yield return new WaitForSeconds(5);
             jumpValue++;
-            jumpValue++;
-            yield return new WaitForSeconds(3);
-        } 
-        if(jumpValue == 1 && isGrounded)
-        {
-            jumpValue++;
-            yield return new WaitForSeconds(3);
         }
-        if(jumpValue >= 2 && isGrounded)
+         if(jumpValue == 0)
         {
-            jumpValue--;
-            yield return new WaitForSeconds(3);
+            yield return new WaitForSeconds(5);
+            jumpValue++;
+            jumpValue++;
         }
-
     }
 }
