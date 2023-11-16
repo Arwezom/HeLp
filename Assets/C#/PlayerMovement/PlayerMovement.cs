@@ -161,18 +161,18 @@ public class PlayerMovement : MonoBehaviour
     }
     IEnumerator jump1Coroutine()
     {   
-        if(jumpValue1 == 0)
+        if(jumpValue1 <= 0)
         {
             yield return new WaitForSeconds(3);
-            jumpValue1++;
+            jumpValue1 = 1;
         }
     }
     IEnumerator jump2Coroutine()
     {   
-        if(jumpValue2 == 0)
+        if(jumpValue2 <= 0)
         {
             yield return new WaitForSeconds(3);
-            jumpValue2++;
+            jumpValue2 = 1;
         }
     }
 }
