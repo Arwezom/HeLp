@@ -8,7 +8,8 @@ public class PlayerMovement : MonoBehaviour
     float moveSpeed = 20f;
     bool isFacingRight = false;
     float jumpPower = 20f;
-    int jumpValue = 0;
+    int jumpValue1 = 0;
+    int jumpValue2 = 0;
     bool isGrounded = false;
 
     public float dashDistance = 15f;
@@ -24,8 +25,8 @@ public class PlayerMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-        StartCoroutine(CounterCoroutine());
-        jumpValue=2;
+        jumpValue1++;
+        jumpValue2++;
     }
 
     // Update is called once per frame
@@ -34,56 +35,82 @@ public class PlayerMovement : MonoBehaviour
         horizontalInput = Input.GetAxis("Horizontal");
         FlipSprite();
 
-        if(Input.GetButtonDown("Jump") && isGrounded)
+        if(Input.GetButtonDown("Jump") && isGrounded && jumpValue1 == 1) 
         {
-            Debug.Log("FirstJump"+jumpValue);
+            Debug.Log("FirstJump"+jumpValue1);
             rb.velocity = new Vector2(rb.velocity.x, jumpPower);
             isGrounded = false;
             animator.SetBool("isJumping", !isGrounded);
-            jumpValue--;
-            StartCoroutine(CounterCoroutine());
+            jumpValue1--;
+            StartCoroutine(jump1Coroutine());
             return;
         }
 
 
-        if(Input.GetButtonDown("Jump") && jumpValue == 1)
+        if(Input.GetButtonDown("Jump") && jumpValue2 == 1)
         {
-            Debug.Log("SecondJump"+jumpValue);
+            Debug.Log("SecondJump"+jumpValue2);
             rb.velocity = new Vector2(rb.velocity.x, jumpPower);
-            jumpValue--;
-            StartCoroutine(CounterCoroutine());
+            jumpValue2--;
+            StartCoroutine(jump2Coroutine());
         }
 
         //dashing left
-        if(Input.GetKeyDown(KeyCode.A) && jumpValue >= 1)
+        if(Input.GetKeyDown(KeyCode.A) && (jumpValue1 == 1 || jumpValue2 == 1))
         {
             if(doubleTapTime > Time.time && lastKeyCode == KeyCode.A)
             {
-                StartCoroutine(Dash(-2.5f));
+                if(jumpValue1 == 1)
+                {
+                    jumpValue1--;
+                    StartCoroutine(Dash(-2.5f));
+                    StartCoroutine(jump1Coroutine());
+                }
+                else
+                {
+                    jumpValue2--;
+                    StartCoroutine(Dash(-2.5f));
+                    StartCoroutine(jump2Coroutine());
+                }
             }
             else
             {
                 doubleTapTime = Time.time + 1f;
             }
             lastKeyCode = KeyCode.A;
-            jumpValue--;
-            StartCoroutine(CounterCoroutine());
+            return;
         }
+
         //dashing right
-        if(Input.GetKeyDown(KeyCode.D) && jumpValue >= 1)
+        if(Input.GetKeyDown(KeyCode.D) && (jumpValue1 == 1 || jumpValue2 == 1))
         {
             if(doubleTapTime > Time.time && lastKeyCode == KeyCode.D)
             {
-                StartCoroutine(Dash(2.5f));
+                if(jumpValue1 == 1)
+                {
+                    jumpValue1--;
+                    StartCoroutine(Dash(2.5f));
+                    StartCoroutine(jump1Coroutine());
+                }
+                else
+                {
+                    jumpValue2--;
+                    StartCoroutine(Dash(2.5f));
+                    StartCoroutine(jump2Coroutine());
+                    
+                }
             }
             else
             {
                 doubleTapTime = Time.time + 1f;
             }
             lastKeyCode = KeyCode.D;
-            jumpValue--;
-            StartCoroutine(CounterCoroutine());
+
+
+            StartCoroutine(jump1Coroutine());
+            StartCoroutine(jump2Coroutine());
         }
+        return;
     }
 
     private void FixedUpdate()
@@ -110,7 +137,6 @@ public class PlayerMovement : MonoBehaviour
     public void OnTriggerEnter2D(Collider2D collision)
     {
         Debug.Log("Landen");
-        jumpValue = 2;
         isGrounded = true;
         animator.SetBool("isJumping", !isGrounded);
     }
@@ -133,18 +159,20 @@ public class PlayerMovement : MonoBehaviour
         isDashing = false;
 
     }
-    IEnumerator CounterCoroutine()
+    IEnumerator jump1Coroutine()
     {   
-        if(jumpValue == 1)
+        if(jumpValue1 == 0)
         {
-            yield return new WaitForSeconds(5);
-            jumpValue++;
+            yield return new WaitForSeconds(3);
+            jumpValue1++;
         }
-         if(jumpValue == 0)
+    }
+    IEnumerator jump2Coroutine()
+    {   
+        if(jumpValue2 == 0)
         {
-            yield return new WaitForSeconds(5);
-            jumpValue++;
-            jumpValue++;
+            yield return new WaitForSeconds(3);
+            jumpValue2++;
         }
     }
 }
