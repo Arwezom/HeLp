@@ -721,7 +721,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: +Dash
+  m_text: +Stealth
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 776b4d85caf4985439ba4919f557717b, type: 2}
   m_sharedMaterial: {fileID: -807913505089956659, guid: 776b4d85caf4985439ba4919f557717b, type: 2}
@@ -1084,7 +1084,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!95 &363305466
 Animator:
   serializedVersion: 4
@@ -3377,7 +3377,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!95 &970040240
 Animator:
   serializedVersion: 4
@@ -5807,7 +5807,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: +Stealth
+  m_text: +View
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 776b4d85caf4985439ba4919f557717b, type: 2}
   m_sharedMaterial: {fileID: -807913505089956659, guid: 776b4d85caf4985439ba4919f557717b, type: 2}
