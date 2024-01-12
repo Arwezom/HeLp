@@ -118,8 +118,8 @@ public class PlayerMovement : MonoBehaviour
         //running
         if(!isDashing)
         rb.velocity = new Vector2(horizontalInput * moveSpeed, rb.velocity.y);
-        animator.SetFloat("xVelocity", Math.Abs(rb.velocity.x))
-        
+        animator.SetFloat("xVelocity", Math.Abs(rb.velocity.x));
+
         //jump
         animator.SetFloat("yVelocity", rb.velocity.y);
     }
